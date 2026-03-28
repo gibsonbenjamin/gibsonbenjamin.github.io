@@ -363,13 +363,29 @@
     .portfolio-img {
       width: 100%;
       height: 180px;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 3rem;
       position: relative;
       overflow: hidden;
+      background: #111;
+    }
+
+    .portfolio-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.3s;
+    }
+
+    .portfolio-card:hover .portfolio-img img {
+      transform: scale(1.03);
+    }
+
+    .portfolio-img.placeholder {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
     }
 
     .portfolio-img::after {
@@ -420,6 +436,7 @@
       font-size: 0.9rem;
       opacity: 0;
       transition: opacity 0.3s;
+      z-index: 2;
     }
 
     .portfolio-card:hover .portfolio-arrow {
@@ -653,7 +670,9 @@
   <div class="portfolio-grid fade-in">
     <a href="https://public.tableau.com/app/profile/benjamingibson/vizzes" target="_blank" class="portfolio-card">
       <div class="portfolio-arrow">↗</div>
-      <div class="portfolio-img">📈</div>
+      <div class="portfolio-img">
+        <img src="dashboard.png" alt="S&P 500 Stock Dashboard"/>
+      </div>
       <div class="portfolio-body">
         <div class="portfolio-tag">Tableau · SQL · R</div>
         <div class="portfolio-title">S&P 500 Stock Dashboard</div>
@@ -661,7 +680,7 @@
       </div>
     </a>
     <div class="portfolio-card" style="opacity:0.4; cursor:default;">
-      <div class="portfolio-img">🔜</div>
+      <div class="portfolio-img placeholder">🔜</div>
       <div class="portfolio-body">
         <div class="portfolio-tag">Coming Soon</div>
         <div class="portfolio-title">More Projects</div>
@@ -708,12 +727,10 @@
 </section>
 
 <script>
-  // Fade in on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
-        // Animate skill bars
         e.target.querySelectorAll('.skill-fill').forEach(bar => {
           bar.style.width = bar.dataset.width + '%';
         });
@@ -723,7 +740,6 @@
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-  // Active nav
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('nav a');
 
