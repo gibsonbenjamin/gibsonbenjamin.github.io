@@ -355,7 +355,6 @@
 
     .portfolio-card:hover .portfolio-arrow { opacity: 1; }
 
-    /* Pipeline workflow display */
     .pipeline {
       display: flex;
       align-items: center;
@@ -380,7 +379,6 @@
       font-size: 0.7rem;
     }
 
-    /* Project links row */
     .project-links {
       display: flex;
       gap: 0.75rem;
@@ -423,7 +421,6 @@
       color: var(--accent);
     }
 
-    /* Make the S&P card not an anchor so we can use custom links inside */
     .portfolio-card-static {
       background: var(--card);
       border: 1px solid var(--border);
@@ -534,9 +531,8 @@
   <h2 class="section-title fade-in">About Me</h2>
   <div class="about-grid fade-in">
     <div class="about-text">
-      <p>I'm Benjamin, a driven and curious student at Christopher Newport University pursuing a Bachelor of Science in Finance with a deep interest in data analytics and financial markets.</p>
-      <p>I enjoy working with real-world datasets — cleaning, analyzing, and visualizing data to tell meaningful stories. My current focus is building projects that combine financial knowledge with modern data tools like Tableau, SQL, and R.</p>
-      <p>Outside of academics I stay active through baseball, basketball, and golf, and I'm always looking for new ways to grow both analytically and professionally.</p>
+      <p>I'm Benjamin, a Finance student at Christopher Newport University with a focus on data analytics and financial markets. I'm drawn to the intersection of financial knowledge and data — turning raw numbers into insights that actually mean something.</p>
+      <p>I enjoy working with real-world datasets using tools like SQL, R, and Tableau, and I'm currently building projects that reflect both sides of that skillset. Outside of academics, I stay active through baseball, basketball, and golf.</p>
       <br/>
       <a href="resume.pdf" class="btn" download>⬇ Download Resume</a>
     </div>
@@ -611,7 +607,6 @@
   <h2 class="section-title fade-in">My Portfolio</h2>
   <div class="portfolio-grid fade-in">
 
-    <!-- S&P 500 Project Card -->
     <div class="portfolio-card-static">
       <div class="portfolio-img">
         <img src="dashboard.png" alt="S&P 500 Stock Dashboard"/>
@@ -619,8 +614,6 @@
       <div class="portfolio-body">
         <div class="portfolio-tag">R · SQLite · SQL · Tableau</div>
         <div class="portfolio-title">S&P 500 Risk & Return Dashboard</div>
-
-        <!-- Pipeline -->
         <div class="pipeline">
           <span class="pipeline-step">CSV Data</span>
           <span class="pipeline-arrow">→</span>
@@ -630,9 +623,7 @@
           <span class="pipeline-arrow">→</span>
           <span class="pipeline-step">Tableau</span>
         </div>
-
         <div class="portfolio-desc">Analyzed 10 years of S&P 500 price data for 500+ stocks. Routed data through a SQLite database, calculated annualized returns, volatility, and Sharpe ratios via SQL window functions, and visualized results by sector in Tableau.</div>
-
         <div class="project-links">
           <a href="https://public.tableau.com/app/profile/benjamingibson/vizzes" target="_blank" class="project-link primary">View Dashboard ↗</a>
           <a href="https://github.com/gibsonbenjamin/gibsonbenjamin.github.io/blob/main/sp500_risk_analysis.R" target="_blank" class="project-link secondary">View R Script ↗</a>
@@ -640,7 +631,6 @@
       </div>
     </div>
 
-    <!-- Coming Soon Card -->
     <div class="portfolio-card" style="opacity:0.4; cursor:default;">
       <div class="portfolio-img placeholder">🔜</div>
       <div class="portfolio-body">
