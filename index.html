@@ -333,7 +333,7 @@
     }
 
     .portfolio-title { font-size: 1rem; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; }
-    .portfolio-desc { font-size: 0.83rem; color: #64748b; line-height: 1.6; }
+    .portfolio-desc { font-size: 0.83rem; color: #64748b; line-height: 1.6; margin-bottom: 1rem; }
 
     .portfolio-arrow {
       position: absolute;
@@ -354,6 +354,87 @@
     }
 
     .portfolio-card:hover .portfolio-arrow { opacity: 1; }
+
+    /* Pipeline workflow display */
+    .pipeline {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .pipeline-step {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 1px;
+      color: var(--muted);
+      background: #0a1628;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 0.2rem 0.5rem;
+    }
+
+    .pipeline-arrow {
+      color: var(--accent);
+      font-size: 0.7rem;
+    }
+
+    /* Project links row */
+    .project-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 1rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .project-link.primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1.5px solid var(--accent);
+    }
+
+    .project-link.primary:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .project-link.secondary {
+      background: transparent;
+      color: var(--muted);
+      border: 1.5px solid var(--border);
+    }
+
+    .project-link.secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Make the S&P card not an anchor so we can use custom links inside */
+    .portfolio-card-static {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      display: block;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .portfolio-card-static:hover { border-color: var(--accent); transform: translateY(-3px); }
 
     #contact { flex-direction: column; align-items: flex-start; gap: 3rem; }
 
@@ -529,17 +610,37 @@
 <section id="portfolio">
   <h2 class="section-title fade-in">My Portfolio</h2>
   <div class="portfolio-grid fade-in">
-    <a href="https://public.tableau.com/app/profile/benjamingibson/vizzes" target="_blank" class="portfolio-card">
-      <div class="portfolio-arrow">↗</div>
+
+    <!-- S&P 500 Project Card -->
+    <div class="portfolio-card-static">
       <div class="portfolio-img">
         <img src="dashboard.png" alt="S&P 500 Stock Dashboard"/>
       </div>
       <div class="portfolio-body">
-        <div class="portfolio-tag">Tableau · SQL · R</div>
-        <div class="portfolio-title">S&P 500 Stock Dashboard</div>
-        <div class="portfolio-desc">Interactive dashboard visualizing S&P 500 stock price history, Sharpe ratios by sector, and individual stock performance. Built with Tableau, SQL, and R.</div>
+        <div class="portfolio-tag">R · SQLite · SQL · Tableau</div>
+        <div class="portfolio-title">S&P 500 Risk & Return Dashboard</div>
+
+        <!-- Pipeline -->
+        <div class="pipeline">
+          <span class="pipeline-step">CSV Data</span>
+          <span class="pipeline-arrow">→</span>
+          <span class="pipeline-step">SQLite</span>
+          <span class="pipeline-arrow">→</span>
+          <span class="pipeline-step">SQL / R</span>
+          <span class="pipeline-arrow">→</span>
+          <span class="pipeline-step">Tableau</span>
+        </div>
+
+        <div class="portfolio-desc">Analyzed 10 years of S&P 500 price data for 500+ stocks. Routed data through a SQLite database, calculated annualized returns, volatility, and Sharpe ratios via SQL window functions, and visualized results by sector in Tableau.</div>
+
+        <div class="project-links">
+          <a href="https://public.tableau.com/app/profile/benjamingibson/vizzes" target="_blank" class="project-link primary">View Dashboard ↗</a>
+          <a href="https://github.com/gibsonbenjamin/gibsonbenjamin.github.io/blob/main/sp500_risk_analysis.R" target="_blank" class="project-link secondary">View R Script ↗</a>
+        </div>
       </div>
-    </a>
+    </div>
+
+    <!-- Coming Soon Card -->
     <div class="portfolio-card" style="opacity:0.4; cursor:default;">
       <div class="portfolio-img placeholder">🔜</div>
       <div class="portfolio-body">
@@ -548,6 +649,7 @@
         <div class="portfolio-desc">Additional data analytics projects currently in development. Check back soon!</div>
       </div>
     </div>
+
   </div>
 </section>
 
