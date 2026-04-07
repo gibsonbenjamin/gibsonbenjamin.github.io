@@ -52,7 +52,7 @@
       justify-content: center;
       color: var(--muted);
       text-decoration: none;
-      font-size: 1.1rem;
+      font-size: 1rem;
       transition: all 0.3s;
     }
 
@@ -60,6 +60,12 @@
       background: var(--accent);
       color: #fff;
       border-color: var(--accent);
+    }
+
+    nav a svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
     }
 
     section {
@@ -198,34 +204,25 @@
       margin-top: 0.3rem;
     }
 
+    /* ── SKILLS ── */
     #skills { flex-direction: column; align-items: flex-start; gap: 3rem; }
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem 3rem;
       width: 100%;
     }
 
-    .skill-badge {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 1.1rem 1rem;
+    .skill-bar-wrap { display: flex; flex-direction: column; gap: 0.45rem; }
+
+    .skill-bar-header {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      transition: all 0.3s;
+      justify-content: space-between;
+      align-items: baseline;
     }
 
-    .skill-badge:hover {
-      border-color: var(--accent);
-      background: #0a1628;
-      transform: translateY(-2px);
-    }
-
-    .skill-label {
+    .skill-bar-label {
       font-family: 'DM Mono', monospace;
       font-size: 0.78rem;
       letter-spacing: 2px;
@@ -233,6 +230,29 @@
       color: var(--text);
     }
 
+    .skill-bar-pct {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+    }
+
+    .skill-bar-track {
+      width: 100%;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* ── EXPERIENCE ── */
     #experience { flex-direction: column; align-items: flex-start; gap: 3rem; }
 
     .timeline {
@@ -266,6 +286,7 @@
     .timeline-org { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.8rem; }
     .timeline-desc { font-size: 0.85rem; color: #64748b; line-height: 1.7; }
 
+    /* ── PORTFOLIO ── */
     #portfolio { flex-direction: column; align-items: flex-start; gap: 3rem; }
 
     .portfolio-grid {
@@ -374,16 +395,9 @@
       padding: 0.2rem 0.5rem;
     }
 
-    .pipeline-arrow {
-      color: var(--accent);
-      font-size: 0.7rem;
-    }
+    .pipeline-arrow { color: var(--accent); font-size: 0.7rem; }
 
-    .project-links {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
+    .project-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
     .project-link {
       display: inline-flex;
@@ -399,27 +413,10 @@
       transition: all 0.3s;
     }
 
-    .project-link.primary {
-      background: var(--accent);
-      color: #fff;
-      border: 1.5px solid var(--accent);
-    }
-
-    .project-link.primary:hover {
-      background: transparent;
-      color: var(--accent);
-    }
-
-    .project-link.secondary {
-      background: transparent;
-      color: var(--muted);
-      border: 1.5px solid var(--border);
-    }
-
-    .project-link.secondary:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    .project-link.primary { background: var(--accent); color: #fff; border: 1.5px solid var(--accent); }
+    .project-link.primary:hover { background: transparent; color: var(--accent); }
+    .project-link.secondary { background: transparent; color: var(--muted); border: 1.5px solid var(--border); }
+    .project-link.secondary:hover { border-color: var(--accent); color: var(--accent); }
 
     .portfolio-card-static {
       background: var(--card);
@@ -433,6 +430,7 @@
 
     .portfolio-card-static:hover { border-color: var(--accent); transform: translateY(-3px); }
 
+    /* ── CONTACT ── */
     #contact { flex-direction: column; align-items: flex-start; gap: 3rem; }
 
     .contact-grid {
@@ -461,9 +459,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1rem;
       flex-shrink: 0;
+      color: var(--muted);
     }
+
+    .contact-icon svg { width: 16px; height: 16px; fill: currentColor; }
 
     .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
 
@@ -482,8 +482,10 @@
       transition: all 0.3s;
     }
 
+    .social-link svg { width: 18px; height: 18px; fill: currentColor; }
     .social-link:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
 
+    /* ── ANIMATIONS ── */
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
@@ -501,19 +503,32 @@
       nav { right: 1rem; }
       .hero-img-wrap { width: 260px; height: 340px; }
       .about-grid, .timeline, .portfolio-grid, .contact-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .skills-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
+<!-- NAV: all monochrome SVG icons -->
 <nav>
-  <a href="#home" class="active" title="Home">🏠</a>
-  <a href="#about" title="About">👤</a>
-  <a href="#skills" title="Skills">⚙️</a>
-  <a href="#experience" title="Experience">💼</a>
-  <a href="#portfolio" title="Portfolio">📊</a>
-  <a href="#contact" title="Contact">✉️</a>
+  <a href="#home" class="active" title="Home">
+    <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+  </a>
+  <a href="#about" title="About">
+    <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+  </a>
+  <a href="#skills" title="Skills">
+    <svg viewBox="0 0 24 24"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"/></svg>
+  </a>
+  <a href="#experience" title="Experience">
+    <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.51 16.49 1 14.64 1c-1.01 0-1.96.32-2.64 1.28L12 3l-.36-.72C10.96 1.32 10.01 1 9 1 7.15 1 5.64 2.51 5.64 4.36c0 .48.11.92.18 1.36H4c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5.36-3c.9 0 1.36.64 1.36 1.64 0 1-.48 1.36-1.36 1.36H13V4.36C13 3.64 13.73 3 14.64 3zM9 3c.91 0 1.64.64 1.64 1.36V6H9c-.88 0-1.36-.36-1.36-1.36C7.64 3.64 8.1 3 9 3zM4 19V8h7v11H4zm9 0V8h7v11h-7z"/></svg>
+  </a>
+  <a href="#portfolio" title="Portfolio">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+  </a>
+  <a href="#contact" title="Contact">
+    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+  </a>
 </nav>
 
 <section id="home" style="display:flex; flex-direction: row;">
@@ -523,7 +538,7 @@
   <div class="hero-text fade-in" style="animation-delay:0.2s">
     <h1>Hi, I'm<br/><span>Benjamin</span><br/>Gibson</h1>
     <p>I'm a data analytics student at Christopher Newport University, passionate about financial data, visualization, and uncovering insights through SQL, R, and Tableau.</p>
-    <a href="resume.pdf" class="btn" download>⬇ Download Resume</a>
+    <a href="resume.pdf" class="btn" download>&#8595; Download Resume</a>
   </div>
 </section>
 
@@ -534,7 +549,7 @@
       <p>I'm Benjamin, a Finance student at Christopher Newport University with a focus on data analytics and financial markets. I'm drawn to the intersection of financial knowledge and data — turning raw numbers into insights that actually mean something.</p>
       <p>I enjoy working with real-world datasets using tools like SQL, R, and Tableau, and I'm currently building projects that reflect both sides of that skillset. Outside of academics, I stay active through baseball, basketball, and golf.</p>
       <br/>
-      <a href="resume.pdf" class="btn" download>⬇ Download Resume</a>
+      <a href="resume.pdf" class="btn" download>&#8595; Download Resume</a>
     </div>
     <div class="stat-cards">
       <div class="stat-card">
@@ -555,15 +570,63 @@
 
 <section id="skills">
   <h2 class="section-title fade-in">My Skills</h2>
-  <div class="skills-grid fade-in">
-    <div class="skill-badge"><div class="skill-label">SQL</div></div>
-    <div class="skill-badge"><div class="skill-label">Tableau</div></div>
-    <div class="skill-badge"><div class="skill-label">R</div></div>
-    <div class="skill-badge"><div class="skill-label">Excel</div></div>
-    <div class="skill-badge"><div class="skill-label">Data Visualization</div></div>
-    <div class="skill-badge"><div class="skill-label">Statistical Analysis</div></div>
-    <div class="skill-badge"><div class="skill-label">Data Cleaning</div></div>
-    <div class="skill-badge"><div class="skill-label">Financial Analysis</div></div>
+  <div class="skills-grid fade-in" id="skills-grid">
+    <div class="skill-bar-wrap">
+      <div class="skill-bar-header">
+        <span class="skill-bar-label">Tableau</span>
+        <span class="skill-bar-pct">85%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
+    </div>
+    <div class="skill-bar-wrap">
+      <div class="skill-bar-header">
+        <span class="skill-bar-label">Data Visualization</span>
+        <span class="skill-bar-pct">75%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+    </div>
+    <div class="skill-bar-wrap">
+      <div class="skill-bar-header">
+        <span class="skill-bar-label">SQL</span>
+        <span class="skill-bar-pct">80%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+    </div>
+    <div class="skill-bar-wrap">
+      <div class="skill-bar-header">
+        <span class="skill-bar-label">Statistical Analysis</span>
+        <span class="skill-bar-pct">70%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+    </div>
+    <div class="skill-bar-wrap">
+      <div class="skill-bar-header">
+        <span class="skill-bar-label">R</span>
+        <span class="skill-bar-pct">75%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
+    </div>
+    <div class="skill-bar-wrap">
+      <div class="skill-bar-header">
+        <span class="skill-bar-label">Data Cleaning</span>
+        <span class="skill-bar-pct">70%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+    </div>
+    <div class="skill-bar-wrap">
+      <div class="skill-bar-header">
+        <span class="skill-bar-label">Excel</span>
+        <span class="skill-bar-pct">65%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
+    </div>
+    <div class="skill-bar-wrap">
+      <div class="skill-bar-header">
+        <span class="skill-bar-label">Financial Analysis</span>
+        <span class="skill-bar-pct">60%</span>
+      </div>
+      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="60"></div></div>
+    </div>
   </div>
 </section>
 
@@ -613,7 +676,7 @@
       </div>
       <div class="portfolio-body">
         <div class="portfolio-tag">R · SQLite · SQL · Tableau</div>
-        <div class="portfolio-title">S&P 500 Risk & Return Dashboard</div>
+        <div class="portfolio-title">S&P 500 Risk &amp; Return Dashboard</div>
         <div class="pipeline">
           <span class="pipeline-step">CSV Data</span>
           <span class="pipeline-arrow">→</span>
@@ -623,7 +686,7 @@
           <span class="pipeline-arrow">→</span>
           <span class="pipeline-step">Tableau</span>
         </div>
-        <div class="portfolio-desc">Analyzed 10 years of S&P 500 price data for 500+ stocks. Routed data through a SQLite database, calculated annualized returns, volatility, and Sharpe ratios via SQL window functions, and visualized results by sector in Tableau.</div>
+        <div class="portfolio-desc">Analyzed 10 years of S&amp;P 500 price data for 500+ stocks. Routed data through a SQLite database, calculated annualized returns, volatility, and Sharpe ratios via SQL window functions, and visualized results by sector in Tableau.</div>
         <div class="project-links">
           <a href="https://public.tableau.com/app/profile/benjamingibson/vizzes" target="_blank" class="project-link primary">View Dashboard ↗</a>
           <a href="https://github.com/gibsonbenjamin/gibsonbenjamin.github.io/blob/main/sp500_risk_analysis.R" target="_blank" class="project-link secondary">View R Script ↗</a>
@@ -648,37 +711,59 @@
   <div class="contact-grid fade-in">
     <div class="contact-info">
       <h3 style="color:var(--white); font-size:1.3rem; font-weight:500; margin-bottom:0.5rem;">Reach Out!</h3>
+
       <div class="contact-row">
-        <div class="contact-icon">✉</div>
+        <div class="contact-icon">
+          <!-- envelope -->
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        </div>
         <span>btg.gibson@gmail.com</span>
       </div>
+
       <div class="contact-row">
-        <div class="contact-icon">📍</div>
+        <div class="contact-icon">
+          <!-- location pin -->
+          <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        </div>
         <span>Sterling, VA, United States</span>
       </div>
+
       <div class="contact-row">
-        <div class="contact-icon">🎓</div>
+        <div class="contact-icon">
+          <!-- graduation cap -->
+          <svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+        </div>
         <span>Christopher Newport University</span>
       </div>
+
       <div class="social-links">
-        <a href="https://www.linkedin.com/in/benjamin-gibson-300837353" target="_blank" class="social-link" title="LinkedIn">in</a>
-        <a href="https://github.com/gibsonbenjamin" target="_blank" class="social-link" title="GitHub">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/benjamin-gibson-300837353" target="_blank" class="social-link" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
         </a>
-        <a href="https://public.tableau.com/app/profile/benjamingibson/vizzes" target="_blank" class="social-link" title="Tableau Public">📊</a>
+        <!-- GitHub -->
+        <a href="https://github.com/gibsonbenjamin" target="_blank" class="social-link" title="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12"/></svg>
+        </a>
+        <!-- Tableau -->
+        <a href="https://public.tableau.com/app/profile/benjamingibson/vizzes" target="_blank" class="social-link" title="Tableau Public">
+          <svg viewBox="0 0 24 24"><path d="M11.03 3.6v2.17H9.09V3.6h1.94zm-4.7 1.12v1.5H4.87v-1.5h1.46zm9.35 0v1.5h-1.46v-1.5h1.46zM2.4 8.14v1.94H.47V8.14H2.4zm8.63 0v1.94H9.09V8.14h1.94zm8.57 0v1.94h-1.94V8.14h1.94zM23.53 8.14v1.94H21.6V8.14h1.93zM6.33 8.63v1.46H4.87V8.63h1.46zm9.35 0v1.46h-1.46V8.63h1.46zM11.03 12.6v2.17H9.09V12.6h1.94zm-4.7 1.12v1.5H4.87v-1.5h1.46zm9.35 0v1.5h-1.46v-1.5h1.46zm-9.35 3.63v1.94H4.87v-1.94h1.46zm4.7.49v1.94H9.09v-1.94h1.94zm4.65-.49v1.94h-1.46v-1.94h1.46zm-4.65 3.96v1.94H9.09v-1.94h1.94z"/></svg>
+        </a>
       </div>
     </div>
+
     <div style="background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 2rem;">
       <p style="color: var(--muted); font-size: 0.9rem; line-height: 1.8;">
         I'm currently open to internships and entry-level opportunities in data analytics and finance. Feel free to reach out if you'd like to connect or collaborate!
       </p>
       <br/>
-      <a href="mailto:btg.gibson@gmail.com" class="btn">✉ Send Email</a>
+      <a href="mailto:btg.gibson@gmail.com" class="btn">&#9993; Send Email</a>
     </div>
   </div>
 </section>
 
 <script>
+  // Fade-in on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) e.target.classList.add('visible');
@@ -687,6 +772,7 @@
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+  // Active nav highlight
   const sections = document.querySelectorAll('section');
   const navLinks = document.querySelectorAll('nav a');
 
@@ -699,6 +785,21 @@
       a.classList.toggle('active', a.getAttribute('href') === '#' + current);
     });
   });
+
+  // Animate skill bars when skills section comes into view
+  const skillsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+        skillsObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  const skillsGrid = document.getElementById('skills-grid');
+  if (skillsGrid) skillsObserver.observe(skillsGrid);
 </script>
 </body>
 </html>
