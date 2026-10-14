@@ -120,7 +120,6 @@
       }
 
       .about-grid,
-      .skills-grid,
       .timeline,
       .portfolio-grid {
         grid-template-columns: 1fr;
@@ -181,10 +180,12 @@
 
     .hero-text {
       flex: 1;
+      max-width: 900px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 4rem 6rem 4rem 4rem;
+      padding: 4rem 6rem;
     }
 
     .hero-text h1 {
@@ -286,51 +287,23 @@
     /* ── SKILLS ── */
     #skills { flex-direction: column; align-items: flex-start; gap: 3rem; }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.4rem 3rem;
-      width: 100%;
-    }
-
-    .skill-bar-wrap { display: flex; flex-direction: column; gap: 0.45rem; }
-
-    .skill-bar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-
-    .skill-bar-label {
+    .skills-list { display: flex; flex-direction: column; gap: 1.8rem; width: 100%; }
+    .skill-group-title {
       font-family: 'DM Mono', monospace;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--text);
-    }
-
-    .skill-bar-pct {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.72rem;
       color: var(--accent);
+      margin-bottom: 0.7rem;
     }
-
-    .skill-bar-track {
-      width: 100%;
-      height: 6px;
-      background: transparent;
-      border: none;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .skill-bar-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #3b82f6, #6eb3f5);
-      border-radius: 4px;
-      width: 0%;
-      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .skill-chips span {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.85rem;
+      color: var(--text);
     }
 
     /* ── EXPERIENCE ── */
@@ -477,6 +450,26 @@
     }
 
     .pipeline-arrow { color: var(--accent); font-size: 0.7rem; }
+
+    .findings { margin-bottom: 1rem; }
+    .findings-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .findings ul { list-style: none; }
+    .findings li {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.3rem;
+    }
+    .findings li::before { content: '▸'; position: absolute; left: 0; color: var(--accent); }
 
     .project-links { display: flex; gap: 0.75rem; flex-wrap: wrap; }
 
@@ -682,7 +675,6 @@
       }
 
       .about-grid, .timeline, .portfolio-grid, .contact-grid { grid-template-columns: 1fr; }
-      .skills-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -693,6 +685,9 @@
   <a href="#home" class="active" title="Home">
     <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
   </a>
+  <a href="#portfolio" title="Portfolio">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+  </a>
   <a href="#about" title="About">
     <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
   </a>
@@ -701,9 +696,6 @@
   </a>
   <a href="#experience" title="Experience">
     <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.51 16.49 1 14.64 1c-1.01 0-1.96.32-2.64 1.28L12 3l-.36-.72C10.96 1.32 10.01 1 9 1 7.15 1 5.64 2.51 5.64 4.36c0 .48.11.92.18 1.36H4c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5.36-3c.9 0 1.36.64 1.36 1.64 0 1-.48 1.36-1.36 1.36H13V4.36C13 3.64 13.73 3 14.64 3zM9 3c.91 0 1.64.64 1.64 1.36V6H9c-.88 0-1.36-.36-1.36-1.36C7.64 3.64 8.1 3 9 3zM4 19V8h7v11H4zm9 0V8h7v11h-7z"/></svg>
-  </a>
-  <a href="#portfolio" title="Portfolio">
-    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
   </a>
   <a href="#contact" title="Contact">
     <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -714,6 +706,10 @@
   <a href="#home" class="active" title="Home">
     <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
     Home
+  </a>
+  <a href="#portfolio" title="Portfolio">
+    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+    Projects
   </a>
   <a href="#about" title="About">
     <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
@@ -727,10 +723,6 @@
     <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.51 16.49 1 14.64 1c-1.01 0-1.96.32-2.64 1.28L12 3l-.36-.72C10.96 1.32 10.01 1 9 1 7.15 1 5.64 2.51 5.64 4.36c0 .48.11.92.18 1.36H4c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5.36-3c.9 0 1.36.64 1.36 1.64 0 1-.48 1.36-1.36 1.36H13V4.36C13 3.64 13.73 3 14.64 3zM9 3c.91 0 1.64.64 1.64 1.36V6H9c-.88 0-1.36-.36-1.36-1.36C7.64 3.64 8.1 3 9 3zM4 19V8h7v11H4zm9 0V8h7v11h-7z"/></svg>
     Work
   </a>
-  <a href="#portfolio" title="Portfolio">
-    <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
-    Projects
-  </a>
   <a href="#contact" title="Contact">
     <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
     Contact
@@ -738,137 +730,10 @@
 </div>
 
 <section id="home">
-  <div class="hero-img-wrap fade-in">
-    <img src="profile.png" alt="Benjamin Gibson"/>
-  </div>
   <div class="hero-text fade-in" style="animation-delay:0.2s">
     <h1>Hi, I'm<br/><span>Benjamin</span><br/>Gibson</h1>
-    <p>I'm a data analytics student at Christopher Newport University, passionate about financial data, visualization, and uncovering insights through SQL, R, and Tableau.</p>
+    <p>I'm a Finance and Data Analytics student at Christopher Newport University, passionate about financial data, visualization, and uncovering insights through SQL, R, and Tableau.</p>
     <a href="resume.pdf" class="btn" download>&#8595; Download Resume</a>
-    <div class="hero-mobile-photo">
-      <img src="profile.png" alt="Benjamin Gibson"/>
-      <div class="hero-mobile-photo-text">Christopher Newport University<br/>Finance · Class of 2027</div>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <h2 class="section-title fade-in">About Me</h2>
-  <div class="about-grid fade-in">
-    <div class="about-text">
-      <p>I'm Benjamin, a Finance student at Christopher Newport University with a focus on data analytics and financial markets. I'm drawn to the intersection of financial knowledge and data — turning raw numbers into insights that actually mean something.</p>
-      <p>I enjoy working with real-world datasets using tools like SQL, R, and Tableau, and I'm currently building projects that reflect both sides of that skillset. Outside of academics, I stay active through baseball, basketball, and golf.</p>
-      <br/>
-      <a href="resume.pdf" class="btn" download>&#8595; Download Resume</a>
-    </div>
-    <div class="stat-cards">
-      <div class="stat-card">
-        <div class="num">4</div>
-        <div class="label">Portfolio Projects</div>
-      </div>
-      <div class="stat-card">
-        <div class="num">8+</div>
-        <div class="label">Tools & Technologies</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <h2 class="section-title fade-in">My Skills</h2>
-  <div class="skills-grid fade-in" id="skills-grid">
-    <div class="skill-bar-wrap">
-      <div class="skill-bar-header">
-        <span class="skill-bar-label">Tableau</span>
-        <span class="skill-bar-pct">85%</span>
-      </div>
-      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85"></div></div>
-    </div>
-    <div class="skill-bar-wrap">
-      <div class="skill-bar-header">
-        <span class="skill-bar-label">Data Visualization</span>
-        <span class="skill-bar-pct">75%</span>
-      </div>
-      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
-    </div>
-    <div class="skill-bar-wrap">
-      <div class="skill-bar-header">
-        <span class="skill-bar-label">SQL</span>
-        <span class="skill-bar-pct">80%</span>
-      </div>
-      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
-    </div>
-    <div class="skill-bar-wrap">
-      <div class="skill-bar-header">
-        <span class="skill-bar-label">Statistical Analysis</span>
-        <span class="skill-bar-pct">70%</span>
-      </div>
-      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
-    </div>
-    <div class="skill-bar-wrap">
-      <div class="skill-bar-header">
-        <span class="skill-bar-label">R</span>
-        <span class="skill-bar-pct">75%</span>
-      </div>
-      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="75"></div></div>
-    </div>
-    <div class="skill-bar-wrap">
-      <div class="skill-bar-header">
-        <span class="skill-bar-label">Data Cleaning</span>
-        <span class="skill-bar-pct">70%</span>
-      </div>
-      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
-    </div>
-    <div class="skill-bar-wrap">
-      <div class="skill-bar-header">
-        <span class="skill-bar-label">Excel</span>
-        <span class="skill-bar-pct">65%</span>
-      </div>
-      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
-    </div>
-    <div class="skill-bar-wrap">
-      <div class="skill-bar-header">
-        <span class="skill-bar-label">Financial Analysis</span>
-        <span class="skill-bar-pct">60%</span>
-      </div>
-      <div class="skill-bar-track"><div class="skill-bar-fill" data-width="60"></div></div>
-    </div>
-  </div>
-</section>
-
-<section id="experience">
-  <h2 class="section-title fade-in">My Timeline</h2>
-  <div class="timeline fade-in">
-    <div class="timeline-item">
-      <div class="timeline-date">Mar 2017 – Aug 2019</div>
-      <div class="timeline-title">Baseball Umpire</div>
-      <div class="timeline-org">Lower Loudoun Little League — Sterling, VA</div>
-      <div class="timeline-desc">Officiated youth baseball games, managed on-field disputes, and developed strong communication skills coordinating with coaches and players.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">May 2022 – Feb 2023</div>
-      <div class="timeline-title">Server / Food Runner</div>
-      <div class="timeline-org">Ashby Ponds Senior Living — Ashburn, VA</div>
-      <div class="timeline-desc">Managed inventory tracking, provided attentive customer service, and completed full kitchen safety training.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">May 2022 – Present</div>
-      <div class="timeline-title">Delivery Driver</div>
-      <div class="timeline-org">DoorDash — Sterling & Newport News, VA</div>
-      <div class="timeline-desc">Managed timely deliveries, optimized delivery routes, and maintained high customer satisfaction through efficient order handling.</div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-date">May 2025 – Present</div>
-      <div class="timeline-title">Golf Operations</div>
-      <div class="timeline-org">Trump National Golf Club — Sterling, VA</div>
-      <div class="timeline-desc">Performed equipment maintenance, assisted with staging golf carts and organizing bags, delivering professional customer service to members and guests.</div>
-    </div>
-    <div class="timeline-item" style="grid-column: 1 / -1;">
-      <div class="timeline-date">2023 – Present</div>
-      <div class="timeline-title">Bachelor of Science in Finance</div>
-      <div class="timeline-org">Christopher Newport University — Newport News, VA</div>
-      <div class="timeline-desc">Pursuing a BS in Finance with a focus on data analytics, financial markets, and data visualization. Expected graduation May 2027.</div>
-    </div>
   </div>
 </section>
 
@@ -893,6 +758,13 @@
           <span class="pipeline-step">Tableau</span>
         </div>
         <div class="portfolio-desc">Analyzed 10 years of S&amp;P 500 price data for 500+ stocks. Routed data through a SQLite database, calculated annualized returns, volatility, and Sharpe ratios via SQL window functions, and visualized results by sector in Tableau.</div>
+        <div class="findings">
+          <div class="findings-title">Key Findings</div>
+          <ul>
+            <li>Information Technology led risk-adjusted returns (median Sharpe 0.64); Consumer Staples (0.33) and Real Estate (0.35) lagged.</li>
+            <li>Higher risk did not guarantee higher reward: Energy had the highest volatility (~40%) but a below-average Sharpe (0.37).</li>
+          </ul>
+        </div>
         <div class="project-links">
           <a href="https://public.tableau.com/app/profile/benjamingibson/vizzes" target="_blank" class="project-link primary" onclick="event.stopPropagation()">View Dashboard ↗</a>
           <a href="https://github.com/gibsonbenjamin/gibsonbenjamin.github.io/blob/main/sp500_risk_analysis.R" target="_blank" class="project-link secondary" onclick="event.stopPropagation()">View R Script ↗</a>
@@ -913,6 +785,14 @@
           <span class="pipeline-step">Tableau</span>
         </div>
         <div class="portfolio-desc">Analyzed nearly 49,000 global electronics sales transactions across 8 product categories and multiple continents. Built 5 visualizations covering sales trends, profit analysis, geographic distribution, and channel breakdown.</div>
+        <div class="findings">
+          <div class="findings-title">Key Findings</div>
+          <ul>
+            <li>The U.S. drove 53% of ~$43.6M in sales (UK 13%, Canada 8%).</li>
+            <li>In-person purchases were about 69% of sales vs. 31% online.</li>
+            <li>Strong seasonality: sales peak every December and drop sharply each April.</li>
+          </ul>
+        </div>
         <div class="project-links">
           <a href="https://public.tableau.com/app/profile/benjamingibson/viz/Gibson_electronics_sales/ElectronicsSalesDashboard" target="_blank" class="project-link primary" onclick="event.stopPropagation()">View Dashboard ↗</a>
         </div>
@@ -933,7 +813,15 @@
           <span class="pipeline-arrow">→</span>
           <span class="pipeline-step">Classification Tree</span>
         </div>
-        <div class="portfolio-desc">Analyzed a dataset of 7,000 telecom customers to predict churn using a decision tree model in R. Performed binning and cross-table analysis across 11 predictors, achieving 80% accuracy on validation data with contract type, tenure, and payment method as the strongest predictors.</div>
+        <div class="portfolio-desc">Analyzed a dataset of 7,000 telecom customers to predict churn using a decision tree model in R. Performed binning and cross-table analysis across 11 predictors, achieving 79.5% validation accuracy with contract type, tenure, and payment method as the strongest predictors.</div>
+        <div class="findings">
+          <div class="findings-title">Key Findings</div>
+          <ul>
+            <li>26.7% overall churn; month-to-month contracts churned at 42.9% vs. 2.9% for two-year contracts.</li>
+            <li>First-year customers churned at 47.6%; electronic check payers at 45.4%.</li>
+            <li>Recommended annual-contract discounts, priority support for new customers, and incentives to move off electronic check.</li>
+          </ul>
+        </div>
         <div class="project-links">
           <a href="https://github.com/gibsonbenjamin/gibsonbenjamin.github.io/blob/main/Customer_Churn_Analysis.pdf" target="_blank" class="project-link primary" onclick="event.stopPropagation()">View Report ↗</a>
           <a href="https://github.com/gibsonbenjamin/gibsonbenjamin.github.io/blob/main/customer_churn_analysis.R" target="_blank" class="project-link secondary" onclick="event.stopPropagation()">View R Script ↗</a>
@@ -958,12 +846,93 @@
           <span class="pipeline-step">Insights</span>
         </div>
         <div class="portfolio-desc">Analyzed 2019 season batting and pitching stats for 50 Washington Nationals players. Used Excel for VLOOKUP, conditional formatting, and charting, and built a relational Access database with queries, forms, and reports to identify top performers.</div>
+        <div class="findings">
+          <div class="findings-title">Key Findings</div>
+          <ul>
+            <li>Juan Soto and Anthony Rendon tied for the team lead with 34 HR.</li>
+            <li>Rendon led in RBI (126) and batting average (.319); Max Scherzer had the lowest starter ERA (2.93).</li>
+          </ul>
+        </div>
         <div class="project-links">
           <a href="https://github.com/gibsonbenjamin/gibsonbenjamin.github.io/blob/main/Nationals_Player_Stats_Analysis.pdf" target="_blank" class="project-link primary" onclick="event.stopPropagation()">View Presentation ↗</a>
         </div>
       </div>
     </div>
 
+  </div>
+</section>
+
+<section id="about">
+  <h2 class="section-title fade-in">About Me</h2>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>I'm Benjamin, a Finance and Data Analytics student at Christopher Newport University with a focus on financial markets. I'm drawn to the intersection of financial knowledge and data — turning raw numbers into insights that actually mean something.</p>
+      <p>I enjoy working with real-world datasets using tools like SQL, R, and Tableau, and I'm currently building projects that reflect both sides of that skillset. Outside of academics, I stay active through baseball, basketball, and golf.</p>
+      <br/>
+      <a href="resume.pdf" class="btn" download>&#8595; Download Resume</a>
+    </div>
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="num">4</div>
+        <div class="label">Portfolio Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">8+</div>
+        <div class="label">Tools & Technologies</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <h2 class="section-title fade-in">My Skills</h2>
+  <div class="skills-list fade-in">
+    <div class="skill-group">
+      <div class="skill-group-title">Languages &amp; Tools</div>
+      <div class="skill-chips"><span>R</span><span>SQL</span><span>Tableau</span><span>Power BI</span><span>Microsoft Access</span><span>SQLite</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Analytics</div>
+      <div class="skill-chips"><span>Statistical Analysis</span><span>Financial Analysis</span><span>Data Visualization</span><span>Dashboard Development</span><span>Predictive Modeling</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Software</div>
+      <div class="skill-chips"><span>Microsoft Excel</span><span>Google Sheets</span><span>Microsoft Office 365</span><span>GitHub</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Soft Skills</div>
+      <div class="skill-chips"><span>Communication</span><span>Problem Solving</span><span>Time Management</span><span>Customer Service</span><span>Inventory Management</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <h2 class="section-title fade-in">My Timeline</h2>
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="timeline-date">May 2025 – Aug 2025</div>
+      <div class="timeline-title">Golf Operations</div>
+      <div class="timeline-org">Trump National Golf Club — Sterling, VA</div>
+      <div class="timeline-desc">Owned daily tracking and reporting of cart and range equipment so assets stayed available for members and guests. Kept member bag records accurate and flagged supply shortages to management before they affected operations.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">May 2022 – Present</div>
+      <div class="timeline-title">Delivery Driver</div>
+      <div class="timeline-org">DoorDash — Newport News, VA</div>
+      <div class="timeline-desc">Took full responsibility for every delivery from pickup to drop-off. Planned routes in real time, prioritized multiple orders at once, and held myself accountable for a high customer rating.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">May 2022 – Feb 2023</div>
+      <div class="timeline-title">Server / Food Runner</div>
+      <div class="timeline-org">Ashby Ponds Senior Living Community — Ashburn, VA</div>
+      <div class="timeline-desc">Tracked inventory across several supply categories and restocked ahead of shortages. Took ownership of service issues, logging and resolving them in real time to keep resident dining positive.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">2023 – Aug 2027 (Expected)</div>
+      <div class="timeline-title">B.S. in Data Analytics and Finance</div>
+      <div class="timeline-org">Christopher Newport University — Newport News, VA</div>
+      <div class="timeline-desc">Coursework in data analytics, statistical analysis, financial modeling, and database management.</div>
+    </div>
   </div>
 </section>
 
@@ -1047,20 +1016,6 @@
     });
   });
 
-  // Animate skill bars when skills section comes into view
-  const skillsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
-          bar.style.width = bar.dataset.width + '%';
-        });
-        skillsObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.2 });
-
-  const skillsGrid = document.getElementById('skills-grid');
-  if (skillsGrid) skillsObserver.observe(skillsGrid);
 </script>
 </body>
 </html>
